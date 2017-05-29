@@ -1,6 +1,8 @@
 package com.dropsnorz.spring_shell_example;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.shell.Bootstrap;
 
@@ -10,13 +12,18 @@ import org.springframework.shell.Bootstrap;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-    	try {
-			Bootstrap.main(args);
+	public static void main( String[] args )
+	{
+		try {
+			ArrayList<String> argsList = new ArrayList<String>(Arrays.asList(args));
+			argsList.add("--disableInternalCommands");
+			String[] argsArray = new String[argsList.size()];
+			argsArray = argsList.toArray(argsArray);
+
+			Bootstrap.main(argsArray);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+	}
 }
